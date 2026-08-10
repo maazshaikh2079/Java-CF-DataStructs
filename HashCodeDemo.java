@@ -40,30 +40,36 @@ public class HashCodeDemo {
     public static void main(String[] args) {
 
         // 1. We create two completely separate objects in memory that hold the EXACT same data.
-        Student student1 = new Student(101, "Alice");
-        Student student2 = new Student(101, "Alice");
+        Student studentObj1 = new Student(101, "Alice");
+        Student studentObj2 = new Student(101, "Alice");
+
+        System.out.println("studentObj1 = " + studentObj1.toString());
+        System.out.println("studentObj2 = " + studentObj2.toString());
+        System.out.println();
 
         // This is false because 'new' created two different physical objects in RAM
-        System.out.println("Are they the exact same object in memory (student1 == student2)?: " + (student1 == student2));
+        System.out.println("Are they the exact same object in memory (studentObj1 == studentObj2)?: " + (studentObj1 == studentObj2));
         System.out.println();
 
         // Because we properly overrode hashCode(), they generate the exact same integer!
-        System.out.println("student1 hashCode: " + student1.hashCode());
-        System.out.println("student2 hashCode: " + student2.hashCode());
+        System.out.println("studentObj1 hashCode: " + studentObj1.hashCode());
+        System.out.println("studentObj2 hashCode: " + studentObj2.hashCode());
         System.out.println();
 
         Map<Student, String> studentGrades = new HashMap<>();
 
-        // We store the grade in the HashMap using student1 as the key
-        studentGrades.put(student1, "A+");
-        System.out.println("Grade 'A+' saved into Map using student1.\n");
+        // We store the grade in the HashMap using studentObj1 as the key
+        studentGrades.put(studentObj1, "A+");
+        System.out.println("Grade 'A+' saved into 'studentGrades' Map using studentObj1.\n");
 
-        // We attempt to retrieve the grade using student2!
-        // Because student2 generates the exact same hashcode as student1, the HashMap knows
+        System.out.println("studentGrades = " + studentGrades + "\n");
+
+        // We attempt to retrieve the grade using studentObj2!
+        // Because studentObj2 generates the exact same hashcode as studentObj1, the HashMap knows
         // exactly which memory bucket to look in.
-        String retrievedGrade = studentGrades.get(student2);
+        String retrievedGrade = studentGrades.get(studentObj2);
 
-        System.out.println("Retrieved grade using student2: " + retrievedGrade);
+        System.out.println("Retrieved grade using studentObj2: " + retrievedGrade);
 
         /*
          * CRITICAL NOTE: If you delete the hashCode() and equals() methods from the
@@ -74,11 +80,16 @@ public class HashCodeDemo {
 }
 
 // Output:
-// Are they the exact same object in memory (student1 == student2)?: false
+// studentObj1 = Student{id=101, name='Alice'}
+// studentObj2 = Student{id=101, name='Alice'}
 
-// student1 hashCode: 63354460
-// student2 hashCode: 63354460
+// Are they the exact same object in memory (studentObj1 == studentObj2)?: false
 
-// Grade 'A+' saved into Map using student1.
+// studentObj1 hashCode: 63354460
+// studentObj2 hashCode: 63354460
 
-// Retrieved grade using student2: A+
+// Grade 'A+' saved into 'studentGrades' Map using studentObj1.
+
+// studentGrades = {Student{id=101, name='Alice'}=A+}
+
+// Retrieved grade using studentObj2: A+
