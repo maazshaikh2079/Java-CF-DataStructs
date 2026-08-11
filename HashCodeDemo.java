@@ -44,8 +44,8 @@ public class HashCodeDemo {
         Student studentObj1 = new Student(101, "Alice");
         Student studentObj2 = new Student(101, "Alice");
 
-        System.out.println("studentObj1 = " + studentObj1.toString());
-        System.out.println("studentObj2 = " + studentObj2.toString());
+        System.out.println("studentObj1 = " + studentObj1);
+        System.out.println("studentObj2 = " + studentObj2);
         System.out.println();
 
         // This is false because 'new' created two different physical objects in RAM
