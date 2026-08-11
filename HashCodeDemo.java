@@ -11,6 +11,11 @@ class Student {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Student{id=" + id + ", name='" + name + "'}";
+    }
+
     // INDUSTRY STANDARD: The Hash Function
     // We tell Java to generate the integer based on the 'id' and 'name' fields,
     // rather than the random memory address of the object.
@@ -30,10 +35,6 @@ class Student {
         return id == student.id && Objects.equals(name, student.name);
     }
 
-    @Override
-    public String toString() {
-        return "Student{id=" + id + ", name='" + name + "'}";
-    }
 }
 
 public class HashCodeDemo {
