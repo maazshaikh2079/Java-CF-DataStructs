@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Array2DDemo {
+public class Array2D {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
